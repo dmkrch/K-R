@@ -1,10 +1,5 @@
 #include <stdio.h>
 
-void Swap(void* a, void* b)
-{
-	void* temp;
-}
-
 
 int Sum(int a, int b)
 {
@@ -28,8 +23,4 @@ int main()
 
 	printf("\n%d + %d = %d", a, b, Calculate(a, b, Sum));
 	printf("\n%d - %d = %d", a, b, Calculate(a, b, Subtr));
-
-	void* p = &a;
-
-	printf("%d", *(int*)p);
 }
