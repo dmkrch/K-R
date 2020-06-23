@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char* argv[])
 {
@@ -16,8 +17,8 @@ int main(int argc, char* argv[])
 		{
 			if ((fp = fopen(*++argv, "r")) == NULL)
 			{
-				printf("cat: can't open %s\n", *argv);
-				return 1;
+				fprintf(stderr,	"cat: can't open %s\n", *argv);
+				exit(0);
 			}
 			else
 			{
@@ -26,7 +27,13 @@ int main(int argc, char* argv[])
 			}
 		}
 
-	return 0;
+	if (ferror(stdout))
+	{
+		fprintf(stderr, "%s: error writing stdout\n", argv[0]);
+		exit(2);
+	}
+
+	exit(0);
 }
 
 void filecopy(FILE* ifp, FILE* ofp) // ifp - input file pointer , ofp - output file pointer
